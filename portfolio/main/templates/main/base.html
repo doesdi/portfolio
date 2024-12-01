@@ -1,0 +1,40 @@
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Stick&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+<header>
+        <div class="navbar">
+            <div class="navbar-logo"><a href="#">Портфолио</a></div>
+            <ul class="links">
+                <li><a href="{% url 'home' %}">Портфолио</a></li>
+                <li><a href="{% url 'about' %}">Обо мне</a></li>
+                <li><a href="{% url 'home' %}">Ссылки</a></li>
+            </ul>
+            <a href="#" class="action-btn">Связаться</a>
+            <div class="toggle-btn">
+                <i class="fa-regular fa-bars">=</i>
+            </div>
+        </div>
+
+    <div class="menu">
+        <li><a href="{% url 'home' %}">Портфолио</a></li>
+        <li><a href="{% url 'about' %}">Обо мне</a></li>
+        <li><a href="{% url 'home' %}">Ссылки</a></li>
+        <a href="#" class="action-btn">Связаться</a>
+    </div>
+    </header>
+{% block mainmenu%}
+
+{% endblock mainmenu %}
+{% block content %}
+
+{% endblock content %}
+</body>
+
+</html>
