@@ -1,9 +1,81 @@
 {% extends 'main/base.html'%}
-{% block title%}Обо мне{% endblock title%}
+{% block title%}
+Обо мне
+{% endblock title%}
+
 {% block mainmenu%}
+<div class="about">
+    <div class="about-name">
+        <h1>Обо мне</h1>
+        <div class="loader_1"></div>
+    </div>
+    <div class="about-content">
+        <div class="first">
+            <div class="hello" style="cursor:pointer;"><h1>Привет, я Самойлов Евгений</h1></div>
+            <p>Закончил очное обучение 2019-2023 в Санкт-Петербургском колледже телекоммуникаций им. Бонч-Бруевича</br>
+                на направлении 09.02.03 «Программирование в компьютерных системах»</br>
+                с итоговой специальностью - техник-программист</br>
+                Окончание программы "Разработка мобильных приложений под Android" IT-school Samsung 2019-2020.</br>
+                Победа в региональном конкурсе проектов в номинации "Игровое приложение" </br>
+                с игрой, написанной на языке Java в среде Android Studio
+            </p>
+        </div>
+
+        <div class="second">
+            <div  class = "love" style="cursor:pointer;"><h1>Я люблю погружаться</h1></div>
+            <p>Люблю экспериментировать, пачкать руки или пытаться изучить что-то новое.</br>
+                Мне просто нравится окунаться в разные впечатления, и это то,</br>
+                что меня волнует в программировании и делает его вдохновляющим.</br>
+                Мне так же интересен спорт, занимался баскетболом, регулярно хожу в зал.
+            </p>
+        </div>
+        <div  class="third">
+            <div class = "work" style="cursor:pointer;"><h1>В настоящее время ищу <span>работу</span></h1></div>
+          <p>Ищу вакансию Junior Python разработчик.</br>
+              Хочу найти команду, вместе с которой буду ставить и достигать амбициозные цели,</br>
+              расти и развиваться профессионально.</p>
+        </div>
+    </div>
+</div>
 {% endblock mainmenu%}
+
+
 {% block content%}
-<div class="section-center">
-  		<h1>Обо мне</h1>
-  	</div>
+<script>
+    const hello = document.querySelector('.hello')
+    const love = document.querySelector('.love')
+    const work = document.querySelector('.work')
+
+    hello.onclick = function(){
+    if(document.querySelector('.first p').style.opacity == '1') {
+       document.querySelector('.first p').style.opacity = '0'
+    }else{
+       document.querySelector('.first p').style.opacity = '1'
+       document.querySelector('.second p').style.opacity = '0'
+       document.querySelector('.third p').style.opacity = '0'
+    }
+    }
+
+    love.onclick = function(){
+    if(document.querySelector('.second p').style.opacity == '1') {
+       document.querySelector('.second p').style.opacity = '0'
+    }else{
+       document.querySelector('.second p').style.opacity = '1'
+       document.querySelector('.first p').style.opacity = '0'
+       document.querySelector('.third p').style.opacity = '0'
+    }
+    }
+
+     work.onclick = function(){
+     if(document.querySelector('.third p').style.opacity == '1') {
+       document.querySelector('.third p').style.opacity = '0'
+    }else{
+       document.querySelector('.third p').style.opacity = '1'
+       document.querySelector('.first p').style.opacity = '0'
+       document.querySelector('.second p').style.opacity = '0'
+    }
+    }
+
+
+</script>
 {% endblock content%}

@@ -1,40 +1,68 @@
 {% load static %}
 <html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Stick&display=swap" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css">
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
+<canvas class="grain"></canvas>
+<div class="mask">
+    <div class="loader"></div>
+</div>
 <header>
         <div class="navbar">
-            <div class="navbar-logo"><a href="#">Портфолио</a></div>
+            <div class="navbar-logo"><a href="{% url 'home' %}" class="logo">Портфолио</a></div>
             <ul class="links">
-                <li><a href="{% url 'home' %}">Портфолио</a></li>
+                <li><a href="{% url 'home' %}">Главная</a></li>
                 <li><a href="{% url 'about' %}">Обо мне</a></li>
                 <li><a href="{% url 'home' %}">Ссылки</a></li>
             </ul>
             <a href="#" class="action-btn">Связаться</a>
             <div class="toggle-btn">
-                <i class="fa-regular fa-bars">=</i>
+                <i class="fa-solid fa-bars"></i>
             </div>
         </div>
-
     <div class="menu">
-        <li><a href="{% url 'home' %}">Портфолио</a></li>
+        <li><a href="{% url 'home' %}">Главная</a></li>
         <li><a href="{% url 'about' %}">Обо мне</a></li>
         <li><a href="{% url 'home' %}">Ссылки</a></li>
-        <a href="#" class="action-btn">Связаться</a>
+        <li><a href="#" class="action-btn">Связаться</a></li>
     </div>
-    </header>
+</header>
+<div class="main-form">
 {% block mainmenu%}
 
 {% endblock mainmenu %}
-{% block content %}
-
+</div>
+{% block content%}
 {% endblock content %}
+<script>
+    const toggleBtn = document.querySelector('.toggle-btn')
+    const toggleBtnIcon = document.querySelector('.toggle-btn i')
+    const dropMenu = document.querySelector('.menu')
+
+    toggleBtn.onclick = function(){
+      dropMenu.classList.toggle('open')
+      const isOpen = dropMenu.classList.contains('open')
+
+      toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+    }
+</script>
+<script>
+    let mask = document.querySelector('.mask')
+    window.addEventListener('load', () => {
+        mask.classList.add('hide')
+        setTimeout(() => {
+        mask.remove()}, 800)
+    })
+</script>
+<script src ="../static/main/js/noise.js"></script>
 </body>
 
 </html>
