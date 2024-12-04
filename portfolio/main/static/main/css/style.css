@@ -28,9 +28,17 @@ body {
     position: absolute;
 }
 
+.contacts a{
+    font-size: 2em;
+}
+
+.contacts li{
+    margin-top: 40px;
+}
+
 .grain {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     opacity: 0.9;
     position: absolute;
 }
@@ -423,11 +431,10 @@ header {
   40%, 100% { width: 9.1ch; margin-right: 0ch; }
 }
 
-
-
 @keyframes l15 {
  100% {transform: rotate(0.5deg)}
 }
+
 
 /* responsive */
 @media(max-width: 992px) {
