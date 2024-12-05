@@ -184,6 +184,7 @@ header {
 }
 
 .action-btn {
+    margin-left:20px;
     font-size: 1.1rem;
     padding: 12px 14px;
     border: 2px solid #e0cfb1;
@@ -223,7 +224,7 @@ header {
 }
 
 .menu.open{
-    height: 210px;
+    height: 330px;
 }
 
 
@@ -360,13 +361,21 @@ header {
   margin-left: 20px;
   height: 70px;
   width: 70px;
-  background: url(image/user_1.png);
+  background: url(image/helmet.png);
   background-size: cover;
   /*filter: invert(1);*/
   transform-origin: 50% 4px;
   animation: l15 4s infinite cubic-bezier(0.5,300,0.5,-300);
 }
 
+
+form{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
 .about-content{
     color: #e0cfb1;
     height: calc(100vh - 240px);
@@ -437,8 +446,11 @@ header {
 
 
 /* responsive */
-@media(max-width: 992px) {
+@media(max-width: 1200px) {
     .navbar  .links, .navbar .action-btn{
+        display:none;
+    }
+    .hello-user{
         display:none;
     }
 

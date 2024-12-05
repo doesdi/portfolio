@@ -1,4 +1,9 @@
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
 from .forms import *
 from .models import Items
 
@@ -26,3 +31,28 @@ def reviews(request):
 
 def pageNotFound(request, exception):
     return render(request, 'main/404.html')
+
+def Register(request):
+    if request.method == 'POST':
+        form = Reg(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = Reg()
+    user = request.user
+    us = User.objects.all()
+    return render(request, 'main/registration.html', {'user': user, 'us': us, 'form': form})
+
+class LoginUser(LoginView):
+    form = Login
+    template_name = 'main/login.html'
+
+    def get_success_url(self):
+        print(1)
+        return reverse_lazy('home')
+
+
+def Logout_user(request):
+    logout(request)
+    return redirect('home')

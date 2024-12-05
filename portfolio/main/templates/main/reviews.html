@@ -8,7 +8,10 @@
     <div class="review-name">
         <h1>Отзывы</h1>
         <div class="loader_2"></div>
+        {% if user.is_authenticated %}
         <button class="action-btn" id="open">Добавить отзыв</button>
+        {% else %}
+        {%endif%}
     </div>
     <div class="modal" id="modal_reviews">
             <div class="modal_box">
@@ -24,6 +27,10 @@
                         <input class ="input" type="text" name="title" maxlength="50" required="" id="id_title">
                     </p>
                     <p>
+                        <label for="id_name">Ваше имя:</label>
+                        <input class ="input" type="text" name="name" maxlength="50" required="" id="id_name">
+                    </p>
+                    <p>
                         <label for="id_content">Отзыв:</label>
                         <input class ="input" type="text" name="content" maxlength="1000" required="" id="id_content">
                     </p>
@@ -31,18 +38,21 @@
                         <label class="op">Оценка:</label>
                         {{form.rating}}
                     </p>
+                    <p>
+                        <label>Капча:</label>
+                        {{form.captcha}}
+                    </p>
                     <button class="but" type="submit">Добавить</button>
                 </form>
             </div>
     </div>
     <div class="review-content">
-
-
         {% for p in Items %}
         {% if p.published == 1 %}
         <div class="reviews-panel">
             <li class="grade">
                 <h1>{{p.title}}</h1>
+                <p class="time">Имя: {{p.name}}</p>
                 <p class="time">Оценка: {{p.rating}}</p>
                 <p class="desc">{{p.content}}</p>
             </li>

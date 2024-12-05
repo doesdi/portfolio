@@ -23,6 +23,13 @@
                 <li><a href="{% url 'about' %}">Обо мне</a></li>
                 <li><a href="{% url 'reviews' %}">Отзывы</a></li>
             </ul>
+
+            {% if user.is_authenticated %}
+            <a class="hello-user" style="cursor:pointer;">{{ user.first_name }}</a>
+            <a class="action-btn" href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+            <a class="action-btn" id="log" href="{% url 'login' %}">Войти</a>
+            {%endif%}
             <a class="action-btn" id="open_1">Связаться</a>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
@@ -32,6 +39,12 @@
         <li><a href="{% url 'home' %}">Главная</a></li>
         <li><a href="{% url 'about' %}">Обо мне</a></li>
         <li><a href="{% url 'reviews' %}">Отзывы</a></li>
+        {% if user.is_authenticated %}
+        <li><a style="cursor:pointer;" >Здравствуйте, {{ user.first_name }}</a></li>
+        <li><a class="action-btn" href="{% url 'logout' %}">Выйти</a></li>
+        {% else %}
+        <li><a class="action-btn" id="log_2" href="{% url 'login' %}">Войти</a></li>
+        {%endif%}
         <li><a class="action-btn" id="open_2">Связаться</a></li>
     </div>
 </header>
@@ -52,6 +65,82 @@
 
          </div>
 </div>
+<div class="modal" id="register">
+    <div class="modal_box">
+        <div class="modal_header">
+            <h1>Регистрация</h1>
+            <button class="but" id="register_close">Закрыть</button>
+        </div>
+        <div class="reg">
+            <form method="post">
+            {% csrf_token %}
+            <div class="error">{{ form_reg.errors }}</div>
+
+<!--                 <p>-->
+<!--                      <label for="id_username_1">Логин:</label>-->
+<!--                      <input class="input" type="text" name="username" maxlength="150" required="" id="id_username_1">-->
+<!--                 </p>-->
+
+<!--                 <p>-->
+<!--                     <label for="id_password1">Пароль:</label>-->
+<!--                     <input  class="input" type="password" name="password1" maxlength="128" required="" id="id_password1">-->
+<!--                 </p>-->
+<!--                 <p>-->
+<!--                     <label for="id_password2">Повтор пароля:</label>-->
+<!--                     <input  class="input" type="password" name="password2" maxlength="128" required="" id="id_password2">-->
+<!--                 </p>-->
+<!--                 <p>-->
+<!--                     <label for="id_first_name">Имя:</label>-->
+<!--                     <input  class="input" type="text" name="first_name" maxlength="150" id="id_first_name">-->
+
+<!--                 </p>-->
+<!--                 <p>-->
+<!--                     <label for="id_last_name">Фамилия:</label>-->
+<!--                     <input  class="input" type="text" name="last_name" maxlength="150" id="id_last_name">-->
+<!--                 </p>-->
+<!--                 <p>-->
+<!--                     <label for="id_email">Адрес электронной почты:</label>-->
+<!--                     <input  class="input" type="email" name="email" maxlength="254" id="id_email">-->
+<!--                 </p>-->
+<!--                 <p>-->
+<!--                     <label for="id_user_phone">Номер телефона:</label>-->
+<!--                     <input  class="input" type="text" name="user_phone" maxlength="40" required="" id="id_user_phone">-->
+<!--                 </p>-->
+              <button class="action-btn" type="submit">Зарегистрировать</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" id="login">
+    <div class="modal_box">
+        <div class="modal_header">
+            <h1>Авторизация</h1>
+            <button class="but" id="login_close">Закрыть</button>
+        </div>
+        <div class="log">
+            <div class="eula">Входя в систему, вы соглашаетесь на смехотворно длинные условия, которые вы не удосужились прочитать</div>
+            <form method="post">
+                    {% csrf_token %}
+                    {{ form_class.non_field_errors }}
+                    {{ form_class.as_p }}
+<!--                <p>-->
+<!--                    <label for="id_username">Имя пользователя:</label>-->
+<!--                    <input class="input" type="text" name="username" autofocus="" autocapitalize="none"-->
+<!--                       autocomplete="username" maxlength="150" required="" id="id_username">-->
+<!--                </p>-->
+<!--                <p>-->
+<!--                    <label for="id_password">Пароль:</label>-->
+<!--                    <input class="input"  type="password" name="password" autocomplete="current-password" required="" id="id_password">-->
+<!--                </p>-->
+                    <button class="action-btn" id="submit" type="submit">Войти в систему</button>
+                    <a class="action-btn" id="reg">Зарегистрироваться</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="main-form">
 {% block mainmenu%}
 
@@ -77,6 +166,24 @@
         }
     })
 </script>
+<!--<script>-->
+<!--    document.getElementById("log").addEventListener("click",function () {-->
+<!--    document.getElementById("login").classList.add("open")-->
+<!--    })-->
+
+<!--    document.getElementById("log_2").addEventListener("click",function () {-->
+<!--    document.getElementById("login").classList.add("open")-->
+<!--    })-->
+<!--    document.getElementById("login_close").addEventListener("click",function () {-->
+<!--    document.getElementById("login").classList.remove("open")-->
+<!--    })-->
+
+<!--    window.addEventListener('keydown', (e) => {-->
+<!--        if (e.key === "Escape"){-->
+<!--            document.getElementById("login").classList.remove("open")-->
+<!--        }-->
+<!--    })-->
+<!--</script>-->
 <script>
     const toggleBtn = document.querySelector('.toggle-btn')
     const toggleBtnIcon = document.querySelector('.toggle-btn i')
@@ -99,6 +206,21 @@
         mask.remove()}, 800)
     })
 </script>
+<!--<script>-->
+<!--    document.getElementById("reg").addEventListener("click",function () {-->
+<!--    document.getElementById("login").classList.remove("open")-->
+<!--    document.getElementById("register").classList.add("open")-->
+<!--    })-->
+<!--    document.getElementById("register_close").addEventListener("click",function () {-->
+<!--    document.getElementById("register").classList.remove("open")-->
+<!--    })-->
+
+<!--    window.addEventListener('keydown', (e) => {-->
+<!--        if (e.key === "Escape"){-->
+<!--            document.getElementById("register").classList.remove("open")-->
+<!--        }-->
+<!--    })-->
+<!--</script>-->
 <script>
     document.getElementById("open").addEventListener("click",function () {
     document.getElementById("modal_reviews").classList.add("open")

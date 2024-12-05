@@ -1,0 +1,40 @@
+{% extends 'main/base.html'%}
+{% block title%}
+Обо мне
+{% endblock title%}
+
+{% block mainmenu%}
+<div class="about">
+    <div class="about-name">
+        <h1>Авторизация</h1>
+        <div class="loader_1"></div>
+        <a class="action-btn" href="{% url 'home' %}">Назад</a>
+        <a class="action-btn" href="{% url 'reg' %}" >Зарегистрироваться</a>
+    </div>
+         <form method="post">
+             {% csrf_token %}
+             {{form.non_field_errors}}
+                 <div class="log-reg">
+                     <div class="log-reg-1">
+                         <label for="id_username">Имя пользователя:</label>
+                         <label for="id_password">Пароль:</label>
+                     </div>
+                     <div class="log-reg-1">
+                         <input class="input" type="text" name="username" autofocus="" autocapitalize="none"
+                            autocomplete="username" maxlength="150" required="" id="id_username">
+                         <input class="input"  type="password" name="password" autocomplete="current-password" required="" id="id_password">
+                     </div>
+
+
+                 </div>
+             <button class="action-btn-" id="submit" type="submit">Войти в систему</button>
+
+         </form>
+
+</div>
+{% endblock mainmenu%}
+
+
+{% block content%}
+
+{% endblock content%}
