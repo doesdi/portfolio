@@ -1,2 +1,4 @@
 # Project exclude paths
 /env/
+/db_password.txt
+/secret_key.txt

@@ -9,7 +9,6 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    overflow-y: auto;
     visibility: hidden;
     opacity: 0;
     transition: all 0.4s;
@@ -21,8 +20,8 @@
 }
 
 .modal_box{
-    max-width: 700px;
-    min-height: 500px;
+    width: 700px;
+    height: 600px;
     padding: 45px;
     z-index: 1;
     margin: 30px 15px;
@@ -45,6 +44,14 @@
     margin-top: 20px;
     font-weight: bold;
     font-size: 25px;
+}
+
+.contacts a{
+    font-size: 2em;
+}
+
+.contacts li{
+    margin-top: 40px;
 }
 
 
@@ -189,6 +196,13 @@
     background-color: #F0F0F0;
 }
 
+form{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
 
 .log-reg{
     display:flex;
@@ -204,8 +218,8 @@
 }
 .log-reg-1  input{
     margin-top:48px;
-
 }
+
 .log-reg-1  label{
     font-size:2em;
     margin-top:40px;
@@ -232,6 +246,243 @@ margin-top:40px;
 
 .action-btn-:active {
     scale: 0.95;
+}
+.action-btn-reg {
+    width:300px;
+    margin-left:20px;
+    margin-top:20px;
+    font-size: 1.1rem;
+    padding: 12px 14px;
+    border: 2px solid #e0cfb1;
+    background: transparent;
+    border-radius: 35px;
+    color: #e0cfb1;
+    position: relative;
+    cursor: pointer;
+}
+
+.action-btn-reg:hover {
+    background: orange;
+    border: 2px solid orange;
+    color: black;
+    scale: 1.05;
+}
+
+.action-btn-reg:active {
+    scale: 0.95;
+}
+
+@media(max-width: 576px) {
+    .about-name .loader_1 {
+        margin-left: 0px;
+    }
+
+    .modal_box{
+        width: 300px;
+        height: 400px;
+
+    }
+    .modal_box h1{
+        color:orange;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    .modal_box p{
+        margin-bottom: 0px;
+        margin-top: 0px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+    .contacts a{
+    font-size: 25px;
+    }
+
+    .contacts li{
+        margin-top: 40px;
+    }
+    .review{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .review-name h1{
+        font-size: 30px;
+    }
+
+    .reviews-panel{
+        min-height: 200px;
+        min-width: 150px;
+    }
+
+    .grade{
+        color: #e0cfb1;
+        padding-top: 15px;
+        font-size: 1rem;
+    }
+
+    .grade h1{
+        font-size: 1.5rem;
+        color: orange;
+    }
+
+
+}
+
+@media(max-width: 1000px) {
+    .modal_box{
+        width: 400px;
+        height: 500px;
+    }
+    .modal_box h1{
+        color:orange;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    .modal_box p{
+        margin-bottom: 0px;
+        margin-top: 0px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .contacts a{
+    font-size: 30px;
+    }
+
+    .contacts li{
+        margin-top: 40px;
+    }
+    .review{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .review-name h1{
+        font-size: 35px;
+    }
+    .reviews-panel{
+        height: 150px;
+        width: 200px;
+    }
+
+    .grade{
+        color: #e0cfb1;
+        padding-top: 15px;
+        font-size: 1rem;
+    }
+
+    .grade h1{
+        font-size: 1.5rem;
+        color: orange;
+    }
+    .input{
+        font-size: 0.7em;
+        border-radius: 10px;
+        height:30px;
+        padding-left: 5px;
+        color: lightslategrey;
+        background-color: #F0F0F0;
+    }
+
+    form{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .log-reg{
+        display:flex;
+        align-items: center;
+        justify-content:center;
+        text-align:center;
+        flex-direction: row;
+    }
+    .log-reg-1{
+        display: flex;
+        flex-direction: column;
+        margin-right:30px;
+    }
+    .log-reg-1  input{
+        margin-top:32px;
+
+    }
+    .log-reg-1  label{
+        font-size:1em;
+        margin-top:40px;
+    }
+
+}
+
+@media(max-height: 940px) {
+    .input{
+        font-size: 0.7em;
+        border-radius: 10px;
+        height:30px;
+        padding-left: 5px;
+        color: lightslategrey;
+        background-color: #F0F0F0;
+    }
+
+    form{
+        min-height:300px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .log-reg{
+        display:flex;
+        align-items: center;
+        justify-content:center;
+        text-align:center;
+        flex-direction: row;
+    }
+    .log-reg-1{
+        display: flex;
+        flex-direction: column;
+        margin-right:30px;
+    }
+    .log-reg-1  input{
+        margin-top:32px;
+
+    }
+    .log-reg-1  label{
+        font-size:1em;
+        margin-top:40px;
+    }
+
+}
+@media(max-height: 850px) {
+    .input{
+        font-size: 0.5em;
+        border-radius: 10px;
+        height:20px;
+        padding-left: 5px;
+        color: lightslategrey;
+        background-color: #F0F0F0;
+    }
+    .log-reg-1{
+        display: flex;
+        flex-direction: column;
+        margin-right:30px;
+    }
+    .log-reg-1  input{
+        margin-top:22px;
+
+    }
+    .log-reg-1  label{
+        font-size:0.8em;
+        margin-top:30px;
+    }
+
+
 }
 
 

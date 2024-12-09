@@ -6,10 +6,11 @@
 {% block mainmenu%}
 <div class="about">
     <div class="about-name">
-        <h1>Авторизация</h1>
-        <div class="loader_1"></div>
-        <a class="action-btn" href="{% url 'home' %}">Назад</a>
-        <a class="action-btn" href="{% url 'reg' %}" >Зарегистрироваться</a>
+
+            <h1>Авторизация</h1>
+            <div class="loader_1"></div>
+            <a class="action-btn" href="{% url 'home' %}">Назад</a>
+
     </div>
          <form method="post">
              {% csrf_token %}
@@ -30,6 +31,7 @@
              <button class="action-btn-" id="submit" type="submit">Войти в систему</button>
 
          </form>
+    <a class="action-btn-reg" href="{% url 'reg' %}" >Зарегистрироваться</a>
 
 </div>
 {% endblock mainmenu%}
