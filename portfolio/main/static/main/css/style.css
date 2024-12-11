@@ -3,7 +3,7 @@
 @font-face {
     font-family: 'Gosha Sans';
     src: url('../fonts/GoshaSans-Regular.woff2') format('woff2'),
-        url('./main/fonts/GoshaSans-Regular.woff') format('woff'),
+        url('../fonts/GoshaSans-Regular.woff') format('woff'),
         url('../fonts/GoshaSans-Regular.ttf') format('truetype');
 
   }

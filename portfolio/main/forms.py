@@ -6,7 +6,7 @@ from .models import *
 from captcha.fields import CaptchaField
 
 
-class AddReviewFrom(forms.ModelForm):
+class AddReviewForm(forms.ModelForm):
     captcha = CaptchaField(label='Код')
     class Meta:
         model = Items

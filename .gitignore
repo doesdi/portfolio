@@ -1,4 +1,8 @@
 # Project exclude paths
+.idea
+*__pycache__
+/db.sqlite3
 /env/
-/db_password.txt
-/secret_key.txt
+idea
+/portfolio/main/migrations/
+/.env

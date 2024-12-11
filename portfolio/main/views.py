@@ -2,14 +2,17 @@ from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
-
+from django.core.cache import cache
 from .forms import *
 from .models import Items
+from django.shortcuts import render
+
+
+
 
 
 def home(request):
-    return render(request, 'main/home.html')
+     return render(request, 'main/home.html')
 
 
 def about(request):
@@ -17,20 +20,36 @@ def about(request):
 
 
 
+# def reviews(request):
+#     if request.method == 'POST':
+#         form = AddReviewFrom(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('reviews')
+#     else:
+#         form = AddReviewFrom()
+#     items = Items.objects.all()
+#     return render(request, 'main/reviews.html', {'Items': items, 'form': form})
+
 def reviews(request):
     if request.method == 'POST':
-        form = AddReviewFrom(request.POST)
+        form = AddReviewForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('reviews')
     else:
-        form = AddReviewFrom()
-    items = Items.objects.all()
+        form = AddReviewForm()
+    items = cache.get('items_cache')
+    if items is None:
+        items = Items.objects.all()
+        cache.set('items_cache', items, timeout=100)
     return render(request, 'main/reviews.html', {'Items': items, 'form': form})
 
 
 def pageNotFound(request, exception):
     return render(request, 'main/404.html')
+
+
 
 def Register(request):
     if request.method == 'POST':
@@ -43,6 +62,8 @@ def Register(request):
     user = request.user
     us = User.objects.all()
     return render(request, 'main/registration.html', {'user': user, 'us': us, 'form': form})
+
+
 
 class LoginUser(LoginView):
     form = Login
