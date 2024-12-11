@@ -1,0 +1,38 @@
+{% extends 'main/base.html'%}
+{% block title%}Портфолио{% endblock title%}
+
+
+{% block mainmenu%}
+<div class="home">
+<div class="name">
+    <h1>Python-<span>разработчик</span></h1>
+    <p>Меня зовут Евгений, проживаю в городе Санкт-Петербург.</br>
+        На данный момент учусь на заочной форме обучения в Санкт-Петербургском</br>
+        государственном технологическом институте
+    </p>
+</div>
+<div class="img">
+    <img src="../static/main/css/image/ok.jpg">
+</div>
+<div class="pop-up">
+    <span>&times;</span>
+    <img src="../static/main/css/image/ok.jpg">
+</div>
+</div>
+{% endblock mainmenu%}
+
+{% block content%}
+<script>
+    const image = document.querySelector('.img')
+
+    image.onclick = function(){
+      document.querySelector('.pop-up').style.display = 'block'
+      document.querySelector('.pop-up img').scr = img.getAttribute('src')
+    }
+
+    const spa = document.querySelector('.pop-up span')
+    spa.onclick = function(){
+      document.querySelector('.pop-up').style.display = 'none'
+    }
+</script>
+{% endblock content%}

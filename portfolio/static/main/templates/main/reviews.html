@@ -1,0 +1,138 @@
+{% extends 'main/base.html'%}
+{% block title%}
+Отзывы
+{% endblock title%}
+
+{% block mainmenu%}
+<div class="review">
+    <div class="review-name">
+        <h1>Отзывы</h1>
+        <div class="loader_2"></div>
+        {% if user.is_authenticated %}
+        <button class="action-btn" id="open">Добавить отзыв</button>
+        {% else %}
+        {%endif%}
+    </div>
+    <div class="modal" id="modal_reviews">
+            <div class="modal_box">
+                <div class="modal_header">
+                    <h1>Добавление отзыва</h1>
+                    <button class="but" id="close">Закрыть</button>
+                </div>
+                <form action="{% url 'reviews' %}" method="post">
+                    {% csrf_token %}
+                    {{form.non_field_errors}}
+                    <p>
+                        <label for="id_title">Название:</label>
+                        <input class ="input" type="text" name="title" maxlength="50" required="" id="id_title">
+                    </p>
+                    <p>
+                        <label for="id_name">Ваше имя:</label>
+                        <input class ="input" type="text" name="name" maxlength="50" required="" id="id_name">
+                    </p>
+                    <p>
+                        <label for="id_content">Отзыв:</label>
+                        <input class ="input" type="text" name="content" maxlength="1000" required="" id="id_content">
+                    </p>
+                    <p>
+                        <label class="op">Оценка:</label>
+                        {{form.rating}}
+                    </p>
+                    <p>
+                        <label>Капча:</label>
+                        {{form.captcha}}
+                    </p>
+                    <button class="but" type="submit">Добавить</button>
+                </form>
+            </div>
+    </div>
+    <div class="review-content">
+        {% for p in Items %}
+        {% if p.published == 1 %}
+        <div class="reviews-panel">
+            <li class="grade">
+                <h1>{{p.title}}</h1>
+                <p>Имя: {{p.name}}</p>
+                <p>Оценка: {{p.rating}}</p>
+                <p>{{p.content}}</p>
+            </li>
+        </div>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock mainmenu%}
+
+
+{% block content%}
+<script>
+    document.getElementById("open").addEventListener("click",function () {
+    document.getElementById("modal_reviews").classList.add("open")
+    })
+    document.getElementById("close").addEventListener("click",function () {
+    document.getElementById("modal_reviews").classList.remove("open")
+    })
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === "Escape"){
+            document.getElementById("modal_reviews").classList.remove("open")
+        }
+    })
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const content = document.querySelector('.review-content');
+      const itemsPerPage = 2; // set number of items per page
+      let currentPage = 0;
+      const items = Array.from(content.getElementsByTagName('div')).slice(0);
+
+    function showPage(page) {
+      const startIndex = page * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      items.forEach((item, index) => {
+        item.classList.toggle('hidden', index < startIndex || index >= endIndex);
+      });
+      updateActiveButtonStates();
+    }
+
+    function createPageButtons() {
+      const totalPages = Math.ceil(items.length / itemsPerPage);
+      const paginationContainer = document.createElement('div');
+      const paginationDiv = document.body.appendChild(paginationContainer);
+      paginationContainer.classList.add('pagination');
+
+      // Add page buttons
+      for (let i = 0; i < totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i + 1;
+        pageButton.addEventListener('click', () => {
+          currentPage = i;
+          showPage(currentPage);
+          updateActiveButtonStates();
+        });
+
+          content.appendChild(paginationContainer);
+          paginationDiv.appendChild(pageButton);
+        }
+    }
+
+    function updateActiveButtonStates() {
+      const pageButtons = document.querySelectorAll('.pagination button');
+      pageButtons.forEach((button, index) => {
+        if (index === currentPage) {
+          button.classList.add('active');
+        } else {
+          button.classList.remove('active');
+        }
+      });
+    }
+
+      createPageButtons(); // Call this function to create the page buttons initially
+      showPage(currentPage);
+    });
+
+
+</script>
+{% endblock content%}

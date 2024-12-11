@@ -1,0 +1,132 @@
+{% load static %}
+<html lang="en">
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'main/css/modal.css' %}" type="text/css">
+    <link rel="icon" href="{% static 'main/css/image/knight.ico' %}">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+<canvas class="grain"></canvas>
+<div class="mask">
+    <div class="loader"></div>
+</div>
+<header>
+        <div class="navbar">
+            <div class="navbar-logo"><a href="{% url 'home' %}" class="logo">Портфолио</a></div>
+            <ul class="links">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'about' %}">Обо мне</a></li>
+                <li><a href="{% url 'reviews' %}">Отзывы</a></li>
+            </ul>
+
+            {% if user.is_authenticated %}
+            <a class="hello-user" style="cursor:pointer;">{{ user.first_name }}</a>
+            <a class="action-btn" href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+            <a class="action-btn" id="log" href="{% url 'login' %}">Войти</a>
+            {%endif%}
+            <a class="action-btn" id="open_1">Связаться</a>
+            <div class="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    <div class="menu">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="{% url 'about' %}">Обо мне</a></li>
+        <li><a href="{% url 'reviews' %}">Отзывы</a></li>
+        {% if user.is_authenticated %}
+        <li><a style="cursor:pointer;" >Здравствуйте, {{ user.first_name }}</a></li>
+        <li><a class="action-btn" href="{% url 'logout' %}">Выйти</a></li>
+        {% else %}
+        <li><a class="action-btn" id="log_2" href="{% url 'login' %}">Войти</a></li>
+        {%endif%}
+        <li><a class="action-btn" id="open_2">Связаться</a></li>
+    </div>
+</header>
+<div class="modal" id="modal_tasks">
+         <div class="modal_box">
+                <div class="modal_header">
+                    <h1>Контакты</h1>
+                    <button class="but" id="close_1">Закрыть</button>
+                </div>
+             <div class="contacts">
+                 <ul>
+                     <li><a target="_blank" href="https://t.me/husokka">Telegram</a></li>
+                     <li><a target="_blank" href="https://github.com/doesdi">Github</a></li>
+                     <li><a target="_blank" href="https://vk.com/husokka">VK</a></li>
+                     <li><a target="_blank" href="https://hub.docker.com/u/husokka">Docker</a></li>
+                 </ul>
+             </div>
+
+         </div>
+</div>
+<div class="main-form">
+{% block mainmenu%}
+
+{% endblock mainmenu %}
+</div>
+{% block content%}
+{% endblock content %}
+<script>
+    document.getElementById("open_1").addEventListener("click",function () {
+    document.getElementById("modal_tasks").classList.add("open")
+    })
+
+    document.getElementById("open_2").addEventListener("click",function () {
+    document.getElementById("modal_tasks").classList.add("open")
+    })
+    document.getElementById("close_1").addEventListener("click",function () {
+    document.getElementById("modal_tasks").classList.remove("open")
+    })
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === "Escape"){
+            document.getElementById("modal_tasks").classList.remove("open")
+        }
+    })
+</script>
+<script>
+    const toggleBtn = document.querySelector('.toggle-btn')
+    const toggleBtnIcon = document.querySelector('.toggle-btn i')
+    const dropMenu = document.querySelector('.menu')
+
+    toggleBtn.onclick = function(){
+      dropMenu.classList.toggle('open')
+      const isOpen = dropMenu.classList.contains('open')
+
+      toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+    }
+</script>
+<script>
+    let mask = document.querySelector('.mask')
+    window.addEventListener('load', () => {
+        mask.classList.add('hide')
+        setTimeout(() => {
+        mask.remove()}, 800)
+    })
+</script>
+<script>
+    document.getElementById("open").addEventListener("click",function () {
+    document.getElementById("modal_reviews").classList.add("open")
+    })
+    document.getElementById("close").addEventListener("click",function () {
+    document.getElementById("modal_reviews").classList.remove("open")
+    })
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === "Escape"){
+            document.getElementById("modal_reviews").classList.remove("open")
+        }
+    })
+</script>
+<script src ="../static/main/js/noise.js"></script>
+</body>
+
+</html>

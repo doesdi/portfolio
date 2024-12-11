@@ -42,7 +42,7 @@ def reviews(request):
     items = cache.get('items_cache')
     if items is None:
         items = Items.objects.all()
-        cache.set('items_cache', items, timeout=100)
+        cache.set('items_cache', items, timeout=60)
     return render(request, 'main/reviews.html', {'Items': items, 'form': form})
 
 

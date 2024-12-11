@@ -1,0 +1,47 @@
+{% extends 'main/base.html'%}
+{% block title%}
+Обо мне
+{% endblock title%}
+
+{% block mainmenu%}
+<div class="about">
+    <div class="about-name">
+        <h1>Регистрация</h1>
+        <div class="loader_1"></div>
+        <a class="action-btn" href="{% url 'home' %}">Назад</a>
+    </div>
+
+         <form method="post">
+          {% csrf_token %}
+             <div class="log-reg">
+                    <div class="error">{{form.errors}}</div>
+                 <div class="log-reg-1">
+                     <label for="id_username">Логин:</label>
+                     <label for="id_password1">Пароль:</label>
+                     <label for="id_password2">Повтор пароля:</label>
+                     <label for="id_first_name">Имя:</label>
+                     <label for="id_last_name">Фамилия:</label>
+                     <label for="id_email">Адрес электронной почты:</label>
+                     <label for="id_user_phone">Номер телефона:</label>
+                 </div>
+                 <div class="log-reg-1">
+                     <input class="input" type="text" name="username" maxlength="150" required="" id="id_username">
+                     <input  class="input" type="password" name="password1" maxlength="128" required="" id="id_password1">
+                     <input  class="input" type="password" name="password2" maxlength="128" required="" id="id_password2">
+                     <input  class="input" type="text" name="first_name" maxlength="150" id="id_first_name">
+                     <input  class="input" type="text" name="last_name" maxlength="150" id="id_last_name">
+                     <input  class="input" type="email" name="email" maxlength="254" id="id_email">
+                     <input  class="input" type="text" name="user_phone" maxlength="40" required="" id="id_user_phone">
+                 </div>
+
+
+             </div>
+                           <button class="action-btn-" type="submit">Зарегистрировать</button>
+         </form>
+</div>
+{% endblock mainmenu%}
+
+
+{% block content%}
+
+{% endblock content%}
